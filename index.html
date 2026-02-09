@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Valentine</title>
+<style>
+body {
+    margin:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    background:linear-gradient(to bottom, #ff9a9e, #fad0c4);
+    font-family:'Arial', sans-serif;
+    overflow:hidden;
+}
+
+.heart {
+    position:absolute;
+    bottom:-20px;
+    color:#ff4d6d;
+    font-size:20px;
+    animation: floatUp 6s linear infinite;
+    opacity:0.7;
+}
+
+@keyframes floatUp {
+    0% { transform:translateY(0); opacity:0; }
+    10% { opacity:1; }
+    100% { transform:translateY(-110vh); opacity:0; }
+}
+
+.card {
+    background:white;
+    padding:40px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 0 20px rgba(0,0,0,0.2);
+    z-index:10;
+}
+
+h1 { color:#ff4d6d; }
+
+button {
+    font-size:20px;
+    padding:12px 25px;
+    margin:15px;
+    border:none;
+    border-radius:15px;
+    cursor:pointer;
+}
+
+.yes { background:#ff4d6d; color:white; }
+.no {
+    background:gray;
+    color:white;
+    position:absolute;
+}
+</style>
+
+<script>
+function yesClick(){
+    document.body.innerHTML = "<h1 style='color:#ff4d6d;text-align:center;margin-top:40vh;'>I love you Andreea ❤️</h1>";
+}
+
+function moveNo(){
+    const btn = document.getElementById("noBtn");
+    const x = Math.random() * (window.innerWidth - 100);
+    const y = Math.random() * (window.innerHeight - 50);
+    btn.style.left = x + "px";
+    btn.style.top = y + "px";
+}
+
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => { heart.remove(); }, 7000);
+}
+
+setInterval(createHeart, 300);
+</script>
+</head>
+
+<body>
+<div class="card">
+<h1>Andreea, will you be my Valentine? 💖</h1>
+<button class="yes" onclick="yesClick()">YES</button>
+<button class="no" id="noBtn" onmouseover="moveNo()">NO</button>
+</div>
+</body>
+</html>
